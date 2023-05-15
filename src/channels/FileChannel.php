@@ -39,8 +39,7 @@ class FileChannel
 
     private function initLog()
     {
-
-        $this->log_path = runtime_path($this->config['path']);
+        $this->log_path = $this->config['path'];
         $this->all_log = $this->getDirs($this->log_path);
         krsort($this->all_log);
     }
