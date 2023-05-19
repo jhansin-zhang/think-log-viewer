@@ -2,7 +2,7 @@
 namespace test;
 
 use PHPUnit\Framework\TestCase;
-use Shiroi\ThinkLogViewer\LogServer;
+use Jhansin\ThinkLogViewer\LogServer;
 
 class ViewPagerTest extends TestCase
 {

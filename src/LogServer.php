@@ -1,8 +1,8 @@
 <?php
 
-namespace jhansin\ThinkLogViewer;
+namespace Jhansin\ThinkLogViewer;
 
-use jhansin\ThinkLogViewer\channels\FileChannel;
+use Jhansin\ThinkLogViewer\channels\FileChannel;
 
 class LogServer
 {

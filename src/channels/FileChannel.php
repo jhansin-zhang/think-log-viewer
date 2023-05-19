@@ -1,6 +1,6 @@
 <?php
 
-namespace jhansin\ThinkLogViewer\channels;
+namespace Jhansin\ThinkLogViewer\channels;
 
 class FileChannel
 {
