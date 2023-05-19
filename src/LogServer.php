@@ -1,8 +1,8 @@
 <?php
 
-namespace Shiroi\ThinkLogViewer;
+namespace jhansin\ThinkLogViewer;
 
-use Shiroi\ThinkLogViewer\channels\FileChannel;
+use jhansin\ThinkLogViewer\channels\FileChannel;
 
 class LogServer
 {
