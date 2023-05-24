@@ -1,12 +1,10 @@
 # think-log-viewer
 thinkphp6 log日志的视图扩展包
 
-### 页面展示
-![image](https://s3.bmp.ovh/imgs/2022/06/26/3385b1106dbd178f.png)
 
 ### 1.配置路由
 ~~~
-Route::get('log_view', "\Shiroi\ThinkLogViewer\LogServer@index");
+Route::get('log_view', "\Jhansin\ThinkLogViewer\LogServer@index");
 ~~~
 
 
