@@ -100,7 +100,8 @@ class FileChannel
                     if (is_dir($dir . "/" . $file)) {
                         $files[$file] = $this->getDirs($dir . "/" . $file);
                     } else {
-                        $files[] = $file;
+                        $date = explode("_",$file);
+                        $files[$date[0]][] = $file;
                     }
                 }
             }

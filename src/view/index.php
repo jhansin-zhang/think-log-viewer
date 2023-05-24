@@ -34,12 +34,19 @@
                         <span class="menu-title"><?=$path?></span>
                     </a>
                 </li>
-                <?php  foreach ($files as $file) {  ?>
+                <?php  foreach ($files as $key =>$fileinfo) {  ?>
                     <li class="nav-item active" style="padding-left: 30px;">
-                        <a class="nav-link change" style="<?php if (($this->param['file']??'') == ($path.'/'.$file)) {echo 'background-color:#ffc100;';} ?>" href="?file=<?=$path.'/'.$file?>">
-                            <span class="menu-title"><?=$file?></span>
+                        <a class="nav-link change" style="background-color:#ffc100;">
+                            <span class="menu-title"><?=$key?></span>
                         </a>
                     </li>
+                    <?php  foreach ($fileinfo as $file) {  ?>
+                        <li class="nav-item active" style="padding-left: 60px;">
+                            <a class="nav-link change" style="<?php if (($this->param['file']??'') == ($path.'/'.$file)) {echo 'background-color:#ffc100;';} ?>" href="?file=<?=$path.'/'.$file?>">
+                                <span class="menu-title"><?=$file?></span>
+                            </a>
+                        </li>
+                    <?php }?>
                 <?php }?>
             <?php }?>
         </ul>
