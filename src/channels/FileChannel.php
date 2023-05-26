@@ -41,7 +41,6 @@ class FileChannel
     {
         $this->log_path = $this->config['path'];
         $this->all_log = $this->getDirs($this->log_path);
-        krsort($this->all_log);
     }
 
     private function loadParam()
@@ -113,6 +112,7 @@ class FileChannel
             }
             closedir($handle);
         }
+        krsort($files);
         return $files;
     }
 }
