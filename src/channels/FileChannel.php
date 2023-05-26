@@ -100,7 +100,13 @@ class FileChannel
                     if (is_dir($dir . "/" . $file)) {
                         $files[$file] = $this->getDirs($dir . "/" . $file);
                     } else {
-                        $date = explode("_",$file);
+                        //日志文件超出大小后，建立新的日志文件
+                        if(strpos($file,"-")){
+                            $name = explode("-",$file)[1];
+                            $date[0] = explode("_",$name)[0];
+                        }else {
+                            $date = explode("_", $file);
+                        }
                         $files[$date[0]][] = $file;
                     }
                 }

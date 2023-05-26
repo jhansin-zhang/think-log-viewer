@@ -7,7 +7,16 @@
     <style>
         <?php echo include_once __DIR__."/css/bootstrap.min.css"?>
         <?php echo include_once __DIR__."/css/style.css"?>
+        <?php echo include_once __DIR__."/css/customer.css"?>
     </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            $("li.nav-item-month .nav-link").click(function () {
+                $(this).next().slideToggle();
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -29,7 +38,7 @@
     <nav class="sidebar sidebar-offcanvas">
         <ul class="nav">
             <?php  foreach ($this->all_log as $path => $files) { ?>
-                <li class="nav-item active">
+                <li class="nav-item nav-item-month active">
                     <a class="nav-link" href="#">
                         <span class="menu-title"><?=$path?></span>
                     </a>
