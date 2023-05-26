@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <style>
         <?php echo include_once __DIR__."/css/bootstrap.min.css"?>
-        <?php echo include_once __DIR__."/css/style.css"?>
         <?php echo include_once __DIR__."/css/customer.css"?>
+        <?php echo include_once __DIR__."/css/style.css"?>
     </style>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" language="javascript">
@@ -42,21 +42,25 @@
                     <a class="nav-link" href="#">
                         <span class="menu-title"><?=$path?></span>
                     </a>
+                    <ul>
+                        <?php  foreach ($files as $key =>$fileinfo) {  ?>
+                            <li class="nav-item active" style="padding-left: 30px;">
+                                <a class="nav-link change" style="background-color:#ffc100;">
+                                    <span class="menu-title"><?=$key?></span>
+                                </a>
+                                <ul id="nav-item-child" style="list-style: none;d">
+                                    <?php  foreach ($fileinfo as $file) {  ?>
+                                        <li class="nav-item active" >
+                                            <a class="nav-link change" style="<?php if (($this->param['file']??'') == ($path.'/'.$file)) {echo 'background-color:#7FFFD4;';} ?>" href="?file=<?=$path.'/'.$file?>">
+                                                <span class="menu-title"><?=$file?></span>
+                                            </a>
+                                        </li>
+                                    <?php }?>
+                                </ul>
+                            </li>
+                        <?php }?>
+                    </ul>
                 </li>
-                <?php  foreach ($files as $key =>$fileinfo) {  ?>
-                    <li class="nav-item active" style="padding-left: 30px;">
-                        <a class="nav-link change" style="background-color:#ffc100;">
-                            <span class="menu-title"><?=$key?></span>
-                        </a>
-                    </li>
-                    <?php  foreach ($fileinfo as $file) {  ?>
-                        <li class="nav-item active" style="padding-left: 60px;">
-                            <a class="nav-link change" style="<?php if (($this->param['file']??'') == ($path.'/'.$file)) {echo 'background-color:#ffc100;';} ?>" href="?file=<?=$path.'/'.$file?>">
-                                <span class="menu-title"><?=$file?></span>
-                            </a>
-                        </li>
-                    <?php }?>
-                <?php }?>
             <?php }?>
         </ul>
     </nav>
