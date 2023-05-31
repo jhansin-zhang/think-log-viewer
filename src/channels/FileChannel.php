@@ -4,25 +4,25 @@ namespace Jhansin\ThinkLogViewer\channels;
 
 class FileChannel
 {
-    private array $config = [];
+    private  $config = [];
 
-    protected string $log_path;
+    protected  $log_path;
 
-    protected array $all_log = [];
+    protected  $all_log = [];
 
-    protected array $param = [];
+    protected  $param = [];
 
-    protected string $log_file = '';
+    protected  $log_file = '';
 
-    protected string $content = '';
+    protected  $content = '';
 
-    protected array $content_arr = [];
+    protected  $content_arr = [];
 
-    protected array $splice_content_arr = [];
+    protected  $splice_content_arr = [];
 
-    protected int $total = 0;
+    protected  $total = 0;
 
-    protected int $totalPage = 0;
+    protected  $totalPage = 0;
 
     public function __construct($channel)
     {

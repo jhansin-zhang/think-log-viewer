@@ -7,33 +7,33 @@ use Jhansin\ThinkLogViewer\channels\FileChannel;
 class LogServer
 {
     //配置信息
-    protected array $config = [];
+    protected  $config = [];
 
     //是否开启日志记录
-    private bool $isOpen = true;
+    private  $isOpen = true;
 
     //查看默认日志记录通道
-    private string $default = 'file';
+    private  $default = 'file';
 
     //默认记录数组
-    protected array $default_channel = [];
+    protected  $default_channel = [];
 
     //日志记录级别
-    private array $level = [];
+    private  $level = [];
 
     //日志类型记录的通道
-    private array $type_channel = [];
+    private  $type_channel = [];
 
     //关闭全局日志写入
-    private bool $close = false;
+    private  $close = false;
 
     //全局日志处理 支持闭包
-    private ?object $processor = null;
+    private  $processor = null;
 
-    private int $total = 0;
+    private  $total = 0;
 
     //日志通道列表
-    private array $channels = [];
+    private  $channels = [];
 
     public function __construct() {
         $this->loadConfig();
