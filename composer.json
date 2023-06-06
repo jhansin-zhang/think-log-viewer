@@ -14,10 +14,18 @@
             "Jhansin\\ThinkLogViewer\\": "src/"
         }
     },
+    "extra": {
+        "think":{
+            "config":{
+                "log": "src/log.php"
+            }
+        }
+    },
     "authors": [
         {
             "name": "jhansin",
             "email": "997662001@qq.com"
         }
-    ]
+    ],
+    "minimum-stability": "dev"
 }
