@@ -4,25 +4,25 @@ namespace Jhansin\ThinkLogViewer\channels;
 
 class FileChannel
 {
-    private  $config = [];
+    private $config = [];
 
-    protected  $log_path;
+    protected $log_path;
 
-    protected  $all_log = [];
+    protected $all_log = [];
 
-    protected  $param = [];
+    protected $param = [];
 
-    protected  $log_file = '';
+    protected $log_file = '';
 
-    protected  $content = '';
+    protected $content = '';
 
-    protected  $content_arr = [];
+    protected $content_arr = [];
 
-    protected  $splice_content_arr = [];
+    protected $splice_content_arr = [];
 
-    protected  $total = 0;
+    protected $total = 0;
 
-    protected  $totalPage = 0;
+    protected $totalPage = 0;
 
     public function __construct($channel)
     {
@@ -50,7 +50,7 @@ class FileChannel
 
     private function loadLog()
     {
-        $this->log_file = $this->log_path . ($this->param['file'] ?? '');
+        $this->log_file = $this->log_path . "/" . ($this->param['file'] ?? '');
         $this->content = (file_exists($this->log_file) && is_file($this->log_file)) ? file_get_contents($this->log_file) : "";
         foreach (array_filter(explode(PHP_EOL, $this->content)) as $k => $v) {
             preg_match("/\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}/", $v, $times);
@@ -70,8 +70,8 @@ class FileChannel
             }
             $this->content_arr[$k]['content'] = $match[2] ?? $v;
         }
-        $last_names = array_column($this->content_arr,'time');
-        array_multisort($last_names,SORT_DESC,$this->content_arr);
+        $last_names = array_column($this->content_arr, 'time');
+        array_multisort($last_names, SORT_DESC, $this->content_arr);
         //数组反转
         // $this->content_arr = array_reverse($this->content_arr,true);
         //数组总数
@@ -103,13 +103,13 @@ class FileChannel
                         $files[$file] = $this->getDirs($dir . "/" . $file);
                     } else {
                         //日志文件超出大小后，建立新的日志文件
-                        if(strpos($file,"-")){
-                            $name = explode("-",$file)[1];
-                            $date[0] = substr(explode("_",$name)[0],0,6);
-                        }else {
+                        if (strpos($file, "-")) {
+                            $name = explode("-", $file)[1];
+                            $date[0] = substr(explode("_", $name)[0], 0, 6);
+                        } else {
                             $date = explode("_", $file);
-                            $month = substr($date[0],0,6);
-                            $day = substr($date[0],6);
+                            $month = substr($date[0], 0, 6);
+                            $day = substr($date[0], 6);
                         }
                         $files[$month][$day][] = $file;
                     }
