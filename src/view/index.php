@@ -109,7 +109,7 @@
                                             ?>">
                                                 <td><?= $v['time'] ?></td>
                                                 <td><?= $v['level'] ?></td>
-                                                <td><?= $v['content'] ?></td>
+                                                <td style="width:100%;white-space:normal;word-wrap:break-word;word-break:break-all;"><?= $v['content'] ?></td>
                                             </tr>
                                         <?php } ?>
                                         </tbody>

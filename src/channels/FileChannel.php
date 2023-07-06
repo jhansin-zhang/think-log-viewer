@@ -106,7 +106,8 @@ class FileChannel
                         }else {
                             $date = explode("_", $file);
                         }
-                        $files[$date[0]][] = $file;
+                        $filetime = date('Y-m-d H:i:s', filemtime($dir . "/" . $file));
+                        $files[$date[0]][$filetime] = $file;
                     }
                 }
             }
