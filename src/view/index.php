@@ -10,12 +10,12 @@
         <?php echo include_once __DIR__."/css/style.css"?>
     </style>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("li.nav-item-month .nav-link").click(function () {
-                $(this).parent().children().slideToggle();
-            });
-        });
+    <script type="text/javascript" >
+        // $(document).ready(function () {
+        //     $("li.nav-item-month .nav-link").click(function () {
+        //         $(this).parent().children().slideToggle();
+        //     });
+        // });
     </script>
 </head>
 
@@ -37,35 +37,31 @@
 <div class="container-fluid page-body-wrapper">
     <nav class="sidebar sidebar-offcanvas">
         <ul class="nav">
-            <?php foreach ($this->all_log as $path => $files) { ?>
+            <?php  foreach ($this->all_log as $path => $files) { if(empty($this->all_log)){continue;}?>
                 <li class="nav-item nav-item-month active">
                     <a class="nav-link" href="#">
-                        <span class="menu-title"><?= $path ?></span>
-                    </a>
-                    <hr/>
+                        <span class="menu-title"><?=$path?></span>
+                    </a><hr/>
                     <ul>
-                        <?php foreach ($files as $key => $fileinfo) { ?>
+                        <?php  foreach ($files as $key =>$fileinfo) { if(empty($files)){continue;} ?>
                             <li class="nav-item active" style="padding-left: 30px;">
                                 <a class="nav-link change" style="background-color:#ffc100;">
-                                    <span class="menu-title"><?= $key ?></span>
+                                    <span class="menu-title"><?=$key?></span>
                                 </a>
                                 <ul id="nav-item-child" style="list-style: none;d">
-                                    <?php foreach ($fileinfo as $file) { ?>
-                                        <li class="nav-item active">
-                                            <a class="nav-link change"
-                                               style="<?php if (($this->param['file'] ?? '') == ($path . '/' . $file)) {
-                                                   echo 'background-color:#7FFFD4;';
-                                               } ?>" href="?file=<?= $path . '/' . $file ?>">
-                                                <span class="menu-title"><?= $file ?></span>
+                                    <?php  foreach ($fileinfo as $file) { if(empty($fileinfo)){continue;}  ?>
+                                        <li class="nav-item active" >
+                                            <a class="nav-link change" style="<?php if (($this->param['file']??'') == ($file)) {echo 'background-color:#7FFFD4;';} ?>" href="?file=<?=$file?>">
+                                                <span class="menu-title"><?=$file?></span>
                                             </a>
                                         </li>
-                                    <?php } ?>
+                                    <?php }?>
                                 </ul>
                             </li>
-                        <?php } ?>
+                        <?php }?>
                     </ul>
                 </li>
-            <?php } ?>
+            <?php }?>
         </ul>
     </nav>
     <div class="main-panel">
@@ -86,32 +82,27 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php foreach ($this->splice_content_arr as $v) { ?>
+                                        <?php  foreach ($this->splice_content_arr as $v) {  ?>
                                             <tr class="<?php
                                             switch ($v['level']) {
                                                 case "error":
-                                                    echo 'danger';
-                                                    break;
+                                                    echo 'danger';break;
                                                 case "warning":
-                                                    echo 'warning';
-                                                    break;
+                                                    echo 'warning';break;
                                                 case "sql":
                                                 case "info":
-                                                    echo 'info';
-                                                    break;
+                                                    echo 'info';break;
                                                 case "debug":
-                                                    echo 'success';
-                                                    break;
+                                                    echo 'success';break;
                                                 default:
-                                                    echo 'default';
-                                                    break;
+                                                    echo 'default';break;
                                             }
                                             ?>">
-                                                <td><?= $v['time'] ?></td>
-                                                <td><?= $v['level'] ?></td>
-                                                <td style="width:100%;white-space:normal;word-wrap:break-word;word-break:break-all;"><?= $v['content'] ?></td>
+                                                <td><?=$v['time']?></td>
+                                                <td><?=$v['level']?></td>
+                                                <td style="width:100%;white-space:normal;word-wrap:break-word;word-break:break-all;"><?=$v['content']?></td>
                                             </tr>
-                                        <?php } ?>
+                                        <?php }?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -121,17 +112,17 @@
                                         echo http_build_query($this->param); ?>">&laquo;</a>
                                     </li>
                                     <li>
-                                        <a href="?<?php $this->param['page'] = isset($_GET['page']) ? (($_GET['page'] == 1) ? 1 : $_GET['page'] - 1) : 1;
+                                        <a href="?<?php $this->param['page'] = isset($_GET['page'])?(($_GET['page']==1) ? 1: $_GET['page']-1):1;
                                         echo http_build_query($this->param); ?>"><</a>
                                     </li>
-                                    <?php for ($i = ($_GET['page'] ?? 1); $i <= $this->totalPage; $i++) { ?>
-                                        <?php if ($i < (isset($_GET['page']) ? $_GET['page'] : 1) + 10) { ?>
-                                            <li><a href="?<?php $this->param['page'] = $i;
-                                                echo http_build_query($this->param); ?>"><?= $i ?></a></li>
+                                    <?php for ($i = ($_GET['page']??1); $i <= $this->totalPage; $i++) {?>
+
+                                        <?php if($i < ((isset($_GET['page'])?$_GET['page']:1) + 10)) { ?>
+                                            <li><a href="?<?php $this->param['page'] = $i;echo http_build_query($this->param); ?>"><?=$i?></a></li>
                                         <?php } ?>
                                     <?php } ?>
                                     <li>
-                                        <a href="?<?php $this->param['page'] = isset($_GET['page']) ? (($_GET['page'] == $this->totalPage) ? $this->totalPage : $_GET['page'] + 1) : $this->totalPage;
+                                        <a href="?<?php $this->param['page'] = isset($_GET['page'])? (($_GET['page']==$this->totalPage)? $this->totalPage: $_GET['page']+1): $this->totalPage;
                                         echo http_build_query($this->param); ?>">></a>
                                     </li>
                                     <li>

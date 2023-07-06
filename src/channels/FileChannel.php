@@ -61,7 +61,7 @@ class FileChannel
                 $this->content_arr[$k]['level'] = 'info';
             } elseif (preg_match("/(.*?)\[warning\](.*?)$/i", $v, $match)) {
                 $this->content_arr[$k]['level'] = 'warning';
-            } elseif (preg_match("/(.*?)\[error\](.*?)$/i", $v, $match)) {
+            } elseif (preg_match("/(.*?)\[error\](.*?)$/", $v, $match)) {
                 $this->content_arr[$k]['level'] = 'error';
             } elseif (preg_match("/(.*?)\[sql\](.*?)$/i", $v, $match)) {
                 $this->content_arr[$k]['level'] = 'sql';
@@ -70,10 +70,13 @@ class FileChannel
             }
             $this->content_arr[$k]['content'] = $match[2] ?? $v;
         }
+        $last_names = array_column($this->content_arr,'time');
+        array_multisort($last_names,SORT_DESC,$this->content_arr);
         //数组反转
-        $this->content_arr = array_reverse($this->content_arr);
+        // $this->content_arr = array_reverse($this->content_arr,true);
         //数组总数
         $this->total = count($this->content_arr);
+
         //总页数
         $this->totalPage = ceil($this->total / $this->getLimit());
         //切片后的数组
@@ -102,12 +105,13 @@ class FileChannel
                         //日志文件超出大小后，建立新的日志文件
                         if(strpos($file,"-")){
                             $name = explode("-",$file)[1];
-                            $date[0] = explode("_",$name)[0];
+                            $date[0] = substr(explode("_",$name)[0],0,6);
                         }else {
                             $date = explode("_", $file);
+                            $month = substr($date[0],0,6);
+                            $day = substr($date[0],6);
                         }
-                        $filetime = date('Y-m-d H:i:s', filemtime($dir . "/" . $file));
-                        $files[$date[0]][$filetime] = $file;
+                        $files[$month][$day][] = $file;
                     }
                 }
             }
