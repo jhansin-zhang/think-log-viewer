@@ -105,7 +105,9 @@ class FileChannel
                         //日志文件超出大小后，建立新的日志文件
                         if (strpos($file, "-")) {
                             $name = explode("-", $file)[1];
-                            $date[0] = substr(explode("_", $name)[0], 0, 6);
+                            $date = explode("_", $name);
+                            $month = substr($date[0],0,6);
+                            $day = substr($date[0],6);
                         } else {
                             $date = explode("_", $file);
                             $month = substr($date[0], 0, 6);

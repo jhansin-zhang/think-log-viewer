@@ -109,11 +109,11 @@
                                 <ul class="pagination">
                                     <li>
                                         <a href="?<?php $this->param['page'] = 1;
-                                        echo http_build_query($this->param); ?>">&laquo;</a>
+                                        echo http_build_query($this->param); ?>">首页</a>
                                     </li>
                                     <li>
                                         <a href="?<?php $this->param['page'] = isset($_GET['page'])?(($_GET['page']==1) ? 1: $_GET['page']-1):1;
-                                        echo http_build_query($this->param); ?>"><</a>
+                                        echo http_build_query($this->param); ?>">上一页</a>
                                     </li>
                                     <?php for ($i = ($_GET['page']??1); $i <= $this->totalPage; $i++) {?>
 
@@ -123,11 +123,11 @@
                                     <?php } ?>
                                     <li>
                                         <a href="?<?php $this->param['page'] = isset($_GET['page'])? (($_GET['page']==$this->totalPage)? $this->totalPage: $_GET['page']+1): $this->totalPage;
-                                        echo http_build_query($this->param); ?>">></a>
+                                        echo http_build_query($this->param); ?>">下一页</a>
                                     </li>
                                     <li>
                                         <a href="?<?php $this->param['page'] = $this->totalPage;
-                                        echo http_build_query($this->param); ?>">&raquo;</a>
+                                        echo http_build_query($this->param); ?>">尾页</a>
                                     </li>
                                 </ul>
                             </div>
