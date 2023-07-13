@@ -122,7 +122,7 @@
                                         <?php } ?>
                                     <?php } ?>
                                     <li>
-                                        <a href="?<?php $this->param['page'] = isset($_GET['page'])? (($_GET['page']==$this->totalPage)? $this->totalPage: $_GET['page']+1): $this->totalPage;
+                                        <a href="?<?php $this->param['page'] = isset($_GET['page']) ? $_GET['page']+1  : 2;
                                         echo http_build_query($this->param); ?>">下一页</a>
                                     </li>
                                     <li>
