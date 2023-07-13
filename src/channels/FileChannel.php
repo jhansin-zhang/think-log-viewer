@@ -119,6 +119,10 @@ class FileChannel
             }
             closedir($handle);
         }
+        foreach ($files as $key => $v) {
+            krsort($v);
+            $files[$key] = $v;
+        };
         krsort($files);
         return $files;
     }
